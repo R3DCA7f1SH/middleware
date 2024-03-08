@@ -1,11 +1,11 @@
 package app
 
 import (
-	"fmt"
-	"log"
 	"middleware/internal/app/endpoint"
 	"middleware/internal/app/mw"
 	"middleware/internal/app/service"
+
+	"github.com/rs/zerolog/log"
 
 	"github.com/labstack/echo/v4"
 )
@@ -31,12 +31,12 @@ func New() (*App, error) {
 }
 
 func (a *App) Run() error {
-	fmt.Println("Server runnung...")
+	log.Debug().Msg("Server runnung...")
 
 	err := a.echo.Start(":8080")
 
 	if err != nil {
-		log.Fatal("ERRRORRR!!!!")
+		log.Error().Err(err)
 	}
 
 	return nil
